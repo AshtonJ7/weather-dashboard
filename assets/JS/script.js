@@ -8,7 +8,7 @@ const MAX_DAILY_FORECAST = 5;
 const now = dayjs();
 const currentDate = now.format("MMM D, YYYY");
 var forecast = document.getElementById("forecast");
-const fdList = document.getElementById('five-day');
+const forecastList = document.getElementById('forecast-list');
 
 
 date()
@@ -25,11 +25,10 @@ const displayCity = () => {
     // Get the Location entered by the user
     const userLocation = cityInput.value;
 
-    console.log(cityInput.value);
-    tellWeather(userLocation);
+    weatherDisplay(userLocation);
 }
 
-const tellWeather = (search) => {
+const weatherDisplay = (search) => {
 
  // Lookup the location to get the Lat/Lon
  var apiUrl = `${WEATHER_API_BASE_URL}/geo/1.0/direct?q=${search}&limit=5&appid=${WEATHER_API_KEY}`;
@@ -89,12 +88,12 @@ var displayCurrentWeather = (weatherData) => {
     const dayData = weatherData.daily;
 
     // Show the Forecast section
-    fdList.style.display = 'flex';
+    forecastList.style.display = 'flex';
     forecast.style.display = 'display';
 
 
     // Clear any current Forecasts
-    fdList.innerHTML = '';
+    forecastList.innerHTML = '';
 
     for (let i = 0; i <MAX_DAILY_FORECAST; i++) {
     // Add the new Forecasts so they are displayed one each
@@ -107,7 +106,7 @@ var displayCurrentWeather = (weatherData) => {
 
     var newForecast = document.createElement('div'); 
     newForecast.classList.add('forecast-day'); 
-    newForecast.innerHTML = `<div class="weather-info"> 
+    newForecast.innerHTML = `<div class="weather"> 
              <div class="date">
              <span>${day}</span>
              </div>
@@ -125,7 +124,7 @@ var displayCurrentWeather = (weatherData) => {
              <span>${humidity}</span>
              </div>
          </div>`;
-     fdList.appendChild(newForecast);
+         forecastList.appendChild(newForecast);
     }
 }
 
@@ -156,14 +155,15 @@ const displayWeather = (weatherData) => {
 
 }
 
-// Search Text and Search Button
+// Set local storage
 function setSearchHistory() {
-    localStorage.setItem("city", JSON.stringify(cities));
+    var cityValue = document.getElementById('cityInput').value; 
+    localStorage.setItem("city", JSON.stringify(cityValue));
   }
 
-
+// search function
     var cityInput = document.getElementById('cityInput'); 
-    var searchButton = document.getElementById('searchButton');
+    var searchButton = document.getElementById('search-button');
 
     searchButton.addEventListener("click", function(event){
         event.preventDefault();
@@ -174,26 +174,24 @@ function setSearchHistory() {
 
         localStorage.getItem("city", cityValue);
 
-        var savedCities = document.getElementById('saved-cities');
+        var savedCities = document.getElementById('cities');
 
-        var historyButton = document.createElement('div');
-        historyButton.innerHTML = cityValue;
-        savedCities.appendChild(historyButton); 
+        var cityList = document.createElement('div');
+        cityList.innerHTML = cityValue;
+        savedCities.appendChild(cityList); 
 
-        var savedHistoryButtons = document.querySelectorAll("#saved-cities div");
+        var cityListSearch = document.querySelectorAll("#cities div");
 
-        savedHistoryButtons.forEach(button => button.addEventListener("click", handleClick));
+        cityListSearch.forEach(button => button.addEventListener("click", handleClick));
 
         // When history buttons are clicked this function will play out 
 
         function handleClick(event) {
 
-            var clickedHistoryButton = event.target;
-          var buttonContent = clickedHistoryButton.innerText; // Retrieve the button contents
+            var cityListSearch= event.target;
+          var listContent = cityListSearch.innerText; // Retrieve the button contents
 
-          console.log("Updated content:", buttonContent);
-
-          tellWeather(buttonContent);
+          weatherDisplay(listContent);
 
           event.preventDefault();
     }
@@ -201,29 +199,3 @@ function setSearchHistory() {
     // Call the getCity function for the search button
     displayCity();
   });
-
-
-  function deleteCheck(e) {
-    const item = e.target;
-//DELETE TODO
-if (item.classList[0] === 'fas fa-trash-alt') {
-    const todo = item.parentElement;
-    ///ANIMATION
-    todo.classList.add('fall');
-    todo.addEventListener('transitionend', function(){
-        todo.remove();
-    });
-}
-  }
-  function deleteCheck(e) {
-    const item = e.target;
-//DELETE TODO
-if (item.classList[0] === 'fas fa-trash-alt') {
-    const todo = item.parentElement;
-    ///ANIMATION
-    todo.classList.add('fall');
-    todo.addEventListener('transitionend', function(){
-        todo.remove();
-    });
-}
-  }

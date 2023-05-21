@@ -18,7 +18,7 @@
   <body>
 
     <!-- Header -->
-    <header class="bg-info p-4 mb-2 text-center">
+    <header class="bg-success p-4 mb-2 text-center">
       <h1 class="font-weight-bold text-white">
         <i class="fas fa-cloud-sun-rain mr-1"></i>
         Weather Dashboard
@@ -34,13 +34,13 @@
           <!-- Search Input -->
           <form id="search-form" class="form-group mt-1 pt-1">
             <input id="cityInput" type="text" placeholder="Enter City"/>
-            <button id="searchButton" class="btn btn-block btn-info mt-3" type="submit">
+            <button id="search-button" class="btn btn-block btn-success mt-3" type="submit">
               Search
               <i class="fas fa-search ml-1"></i>
             </button>
           </form>
           <!-- Search History -->
-          <button id="saved-cities" class="btn btn-block btn-info" type="button" data-toggle="collapse" data-target="#search-history" aria-expanded="false" aria-controls="collapseExample">
+          <button id="cities" class="btn btn-block btn-success" type="button" data-toggle="collapse" data-target="#search-history" aria-expanded="false" aria-controls="collapseExample">
             Previous Searches
           </button>
         </aside>
@@ -54,14 +54,13 @@
               <div class="card">
 
               <!-- Current Conditions -->
-            <div class="card-header d-flex align-items-center list-group-item-info">
+            <div class="card-header d-flex align-items-center list-group-item-success">
               <p id="city-name" class="h2 my-0 mr-2"></p> <span id='date'></span>
   
             </div>
             
             <div class="card-body py-0">
-              
-
+          
               <!-- Current Temperature -->
               <div class="row bg-light d-flex align-items-center py-3">
                 <div class="col-8 col-md-6 col-lg-4">
@@ -92,19 +91,20 @@
                 </div>
               </div>
             </div>
+            <h3>5 Day forecast:</h3> 
           </div>
 
           <!-- Section: 5-Day Forecast -->
+          <div class="row d-flex align-items-center py-5">
           <section id="forecast">
-            <div id="five-day">
-              <h3 id="location-name"></h3> <span id='date'></span>
-              <p class="h2 my-0">5-Day Forecast</p>
-            </div> 
+            <div id="forecast-list">
+            </div>
           </section>
+        </div>
         </main>
 
     <!-- Footer -->
-    <footer class="fixed-bottom py-2 bg-info text-center text-white">
+    <footer class="fixed-bottom py-2 bg-success text-center text-white">
       <p class="h6 m-0">
         <a href="https://openweathermap.org/api" class="text-white">OpenWeather</a>
       </p>
