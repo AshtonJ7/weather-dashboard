@@ -186,7 +186,7 @@ function savedCities() {
 
         cityListSearch.forEach(button => button.addEventListener("click", handleClick));
 
-        // When history buttons are clicked this function will play out 
+        // Event for when buttons are clicked
 
         function handleClick(event) {
 
@@ -198,7 +198,7 @@ function savedCities() {
           event.preventDefault();
     }
   
-    // Call the getCity function for the search button
+   
     displayCity();
   });
 });

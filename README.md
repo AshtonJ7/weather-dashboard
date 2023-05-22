@@ -2,7 +2,7 @@
 
 ## Description
 
-Weather app that retrieves weather data for cities. This app uses the 5 Day Weather Forecast API to retrieve the weather information.
+This is a Weather app that retrieves weather data for different cities. This app uses the 5 Day Weather Forecast API to retrieve the weather information.
 
 
 ## Your Task
@@ -30,3 +30,11 @@ THEN I am presented with a 5-day forecast that displays the date, an icon repres
 WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 ```
+
+## Tech
+
+- API: https://openweathermap.org/api 
+- Day JS
+- HTML
+- CSS
+- Javascript
