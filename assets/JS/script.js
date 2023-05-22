@@ -1,8 +1,8 @@
+$(document).ready(function() {
 const WEATHER_API_BASE_URL = 'https://api.openweathermap.org';
 const WEATHER_API_KEY = 'f23ee9deb4e1a7450f3157c44ed020e1';
 const MAX_DAILY_FORECAST = 5;
 
-// create an array of searched locations
 
 // variable declaration
 const now = dayjs();
@@ -28,6 +28,8 @@ const displayCity = () => {
     weatherDisplay(userLocation);
 }
 
+
+
 const weatherDisplay = (search) => {
 
  // Lookup the location to get the Lat/Lon
@@ -51,32 +53,32 @@ const weatherDisplay = (search) => {
 
          console.log(myData);
 
-         // Get the Weather
+         // retrieve weather information
          var apiUrl = `${WEATHER_API_BASE_URL}/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=minutely,hourly&appid=${WEATHER_API_KEY}`;         
          fetch(apiUrl)
              .then(response => response.json())
              .then(data => {
  
                  console.log(data);
-                 // Show the Current Weather Forecast 
+                 // Current Forecast 
                  displayCurrentWeather (data);
 
-                 // Show the 5 Day Weather Forecast 
+                 // Weather Forecast 
                  displayWeatherForecast(data);
                  })
 
-             // Display the Weather
+             // Display  Weather
              displayWeather (myData);
              })
 }
 
 
 
+    // Current Weather Display
 var displayCurrentWeather = (weatherData) => {
     var currentWeather = weatherData.current;
 
 
-    // Display the Current Weather
     document.getElementById('temp').textContent = `Temp: ${currentWeather.temp} Celsius`;
     document.getElementById('wind').textContent = `Wind: ${currentWeather.wind_speed} MPH`; 
     document.getElementById('humidity').textContent = `Humidity: ${currentWeather.humidity}%`; 
@@ -92,11 +94,11 @@ var displayCurrentWeather = (weatherData) => {
     forecast.style.display = 'display';
 
 
-    // Clear any current Forecasts
+    // Clear 
     forecastList.innerHTML = '';
 
     for (let i = 0; i <MAX_DAILY_FORECAST; i++) {
-    // Add the new Forecasts so they are displayed one each
+    
     var dayForecast = dayData[i];
     var day = new Date(dayForecast.dt*1000).toLocaleDateString('en-GB', {weekday: 'long'}); 
     var icon = `<img src="https://openweathermap.org/img/wn/${dayForecast.weather[0].icon}@2x.png"/>`;
@@ -156,7 +158,7 @@ const displayWeather = (weatherData) => {
 }
 
 // Set local storage
-function setSearchHistory() {
+function savedCities() {
     var cityValue = document.getElementById('cityInput').value; 
     localStorage.setItem("city", JSON.stringify(cityValue));
   }
@@ -199,3 +201,4 @@ function setSearchHistory() {
     // Call the getCity function for the search button
     displayCity();
   });
+});
