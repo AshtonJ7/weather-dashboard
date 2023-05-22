@@ -38,3 +38,11 @@ THEN I am again presented with current and future conditions for that city
 - HTML
 - CSS
 - Javascript
+
+##Screenshot
+
+![image](https://github.com/AshtonJ7/weather-dashboard/assets/62944042/3272a361-4161-49be-be67-f19e9ee9b687)
+
+##Links
+
+https://ashtonj7.github.io/weather-dashboard/
